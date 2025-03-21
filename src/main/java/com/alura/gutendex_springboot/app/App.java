@@ -23,35 +23,25 @@ public class App extends AppService {
             var option = input.nextLine();
 
             switch (option) {
-                case "1":
-                    findBookByTitle();
+                case "1": findBookByTitle();
                     break;
-                case "2":
-                    listBooks();
+                case "2": listBooks();
                     break;
-                case "3":
-                    listAuthors();
+                case "3": listAuthors();
                     break;
-                case "4":
-                    listAuthorsByYear();
+                case "4": listAuthorsByYear();
                     break;
-                case "5":
-                    listBooksByLanguage();
+                case "5": listBooksByLanguage();
                     break;
-                case "6":
-                    findAuthorByName();
+                case "6": findAuthorByName();
                     break;
-                case "7":
-                    listTop10DownloadedBooks();
+                case "7": listTop10DownloadedBooks();
                     break;
-                case "8":
-                    this.downloadedBookStatistics();
+                case "8": downloadedBookStatistics();
                     break;
-                case "0":
-                    System.out.println("Closing the app...");
+                case "0": System.out.println("Closing the app...");
                     return;
-                default:
-                    System.out.println("Please enter a valid number option");
+                default: System.out.println("Please enter a valid number option");
                     break;
             }
         }

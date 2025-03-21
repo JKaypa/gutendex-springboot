@@ -25,11 +25,16 @@ public class AppService {
     private BookRepository bookRepository;
 
 
-    protected void findBookByTitle() throws JsonProcessingException {
+    protected void findBookByTitle() {
         System.out.println("Enter the book title you want to find");
         var title = input.nextLine();
         var response = Http.load(title);
-        var books = serialize.readValue(response, Results.class).books();
+        List<BookDto> books = new ArrayList<>();
+        try {
+            books = serialize.readValue(response, Results.class).books();
+        }catch (JsonProcessingException e){
+            System.out.println("Json Error");
+        }
 
         if(books.isEmpty()) {
             System.out.println("Book not found\n");
@@ -43,8 +48,6 @@ public class AppService {
         var bookRegistered = bookRepository.findByTitleIgnoreCase(book.title());
 
         var newBook = new Book(book.title(), book.languages().get(0), book.downloads());
-        var newAuthor = new Author(List.of(newBook), author.deathYear(),author.birthYear(), author.name());
-
 
         if(bookRegistered.isPresent()){
             System.out.println("This book is already registered\n");
@@ -54,6 +57,12 @@ public class AppService {
             bookRepository.save(newBook);
         } else {
             System.out.println(newBook);
+            var newAuthor = new Author(
+                    List.of(newBook),
+                    author.deathYear(),
+                    author.birthYear(),
+                    author.name()
+            );
             authorRepository.save(newAuthor);
         }
     }

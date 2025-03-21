@@ -2,7 +2,6 @@ package com.alura.gutendex_springboot.app.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity

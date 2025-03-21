@@ -9,8 +9,10 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 
 public class Http {
+    private static final String baseUrl = "https://gutendex.com/books/?search=";
+
     public static String load (String title) {
-        final String baseUrl = "https://gutendex.com/books/?search=";
+
         var titleEncoded = URLEncoder.encode(title, StandardCharsets.UTF_8);
 
         HttpClient client = HttpClient.newHttpClient();
